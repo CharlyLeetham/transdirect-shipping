@@ -102,7 +102,7 @@ global $woocommerce, $wpdb; ?>
 	}
 
 	.loadinggif {
-		background:url('<php echo ACL_TRANSDIRECT_URL; ?>/ajax-loader.gif') no-repeat right center;
+		background:url('<?php echo ACL_TRANSDIRECT_URL; ?>/ajax-loader.gif') no-repeat right center;
 	}
 
 	span.close-option {
