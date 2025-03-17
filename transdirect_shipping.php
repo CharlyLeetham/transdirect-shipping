@@ -1020,4 +1020,18 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
         }
     }
 
+    add_action('admin_init', 'td_debug_shipping_methods');
+
+    function td_debug_shipping_methods() {
+        if (!current_user_can('manage_options')) return; // Only allow admins to run this
+
+        global $woocommerce;
+        if (isset(WC()->shipping)) {
+            $methods = WC()->shipping()->get_shipping_methods();
+            error_log(print_r($methods, true)); // Logs all registered shipping methods
+        } else {
+            error_log('WC()->shipping() is not initialized.');
+        }
+    }
+
 }
