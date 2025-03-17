@@ -83,21 +83,16 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                     $this->init_settings();
 
                     // Define user set variables.
-                    $this->title    = isset($this->settings['title']) ? $this->settings['title'] : __('Transdirect', 'woocommerce');
+                    $this->title    = isset( $this->settings['title'] ) ? $this->settings['title'] : __( 'Transdirect', 'woocommerce' );
+                    $this->description = isset( $this->settings['description'] ) ? $this->settings['description'] : __( 'Uses Transdirect for pricing.', 'woocommerc' );
 
- /*                   if (isset($this->settings['title'])) {
-                        $this->title = $this->settings['title'];
-                    }
-                    else {
-                        $this->title = '';
-                    }
                     if (isset($this->settings['enabled'])) {
                         $this->enabled= $this->settings['enabled'];
                     }
                     else {
                         $this->enabled = $this->settings['enabled'];
                     }
-*/
+
                     // Save settings in admin if you have any defined
                     if(version_compare( get_option( 'woocommerce_version' ), '3.5.0', '>=' )){
                         $this->process_admin_options();
