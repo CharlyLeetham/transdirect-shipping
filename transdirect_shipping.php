@@ -1,13 +1,14 @@
 <?php
 
 /**
- * Plugin Name: Transdirect Shipping
+ * Plugin Name: ACL Transdirect Shipping
  * Plugin URI: https://www.transdirect.com.au/e-commerce/woo-commerce/
  * Description: This plugin allows you to calculate shipping as per your delivery location.
  * FAQ: https://www.transdirect.com.au/e-commerce/woo-commerce/
- * Version: 7.7.3
- * Author: Transdirect
- * Author URI: https://transdirect.com.au/
+ * Version: 1.0.0
+ * Author: Ask Charly Leetham
+ * Author URI: https://askcharlyleetham.com
+ * Contributors: Transdirect, CharlyLeetham
  * Text Domain: woocommerce_transdirect
  * Domain Path: /lang
 **/
@@ -83,7 +84,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                     $this->init_settings();
 
                     // Define user set variables.
-                    $this->title    = isset( $this->settings['title'] ) ? $this->settings['title'] : __( 'Transdirect', 'woocommerce' );
+                    $this->title    = isset( $this->settings['title'] ) ? $this->settings['title'] : __( 'Transdirect', 'woocommerce_transdirect' );
                     $this->description = isset( $this->settings['description'] ) ? $this->settings['description'] : __( 'Uses Transdirect for pricing.', 'woocommerc' );
 
                     if (isset($this->settings['enabled'])) {
@@ -110,28 +111,28 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                 function init_form_fields() {
                     $this->form_fields = array(
                         'enabled' => array(
-                            'title'       => __( 'Enable', 'woocommerce' ),
+                            'title'       => __( 'Enable', 'woocommerce_transdirect' ),
                             'type'        => 'checkbox',
-                            'label'       => __( 'Enable Transdirect', 'woocommerce' ),
+                            'label'       => __( 'Enable Transdirect', 'woocommerce_transdirect' ),
                             'default'     => 'no'
                         ),
                         'authentication'  => array(
                             'type'              => 'authentication'
                         ),                      
                         'title'            => array(
-                            'title'       => __( 'Name', 'woocommerce' ),
+                            'title'       => __( 'Name', 'woocommerce_transdirect' ),
                             'type'        => 'text',
-                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'woocommerce' ),
+                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'woocommerce_transdirect' ),
                             'default'     => $this->method_title,
-                            'placeholder' => __( 'e.g. Transdirect', 'woocommerce' ),
+                            'placeholder' => __( 'e.g. Transdirect', 'woocommerce_transdirect' ),
                             'desc_tip'    => true,
                         ),
                         'description'            => array(
-                            'title'       => __( 'Description', 'woocommerce' ),
+                            'title'       => __( 'Description', 'woocommerce_transdirect' ),
                             'type'        => 'text',
-                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'woocommerce' ),
+                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'woocommerce_transdirect' ),
                             'default'     => $this->method_description,
-                            'placeholder' => __( 'e.g. Transdirect', 'woocommerce' ),
+                            'placeholder' => __( 'e.g. Transdirect', 'woocommerce_transdirect' ),
                             'desc_tip'    => true,
                         )
                     );                    
