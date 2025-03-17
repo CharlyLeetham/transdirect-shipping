@@ -125,6 +125,14 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                             'default'     => $this->method_title,
                             'placeholder' => __( 'e.g. Transdirect', 'woocommerce' ),
                             'desc_tip'    => true,
+                        ),
+                        'description'            => array(
+                            'title'       => __( 'Description', 'woocommerce' ),
+                            'type'        => 'text',
+                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'woocommerce' ),
+                            'default'     => $this->method_description,
+                            'placeholder' => __( 'e.g. Transdirect', 'woocommerce' ),
+                            'desc_tip'    => true,
                         )
                     );                    
                 }
