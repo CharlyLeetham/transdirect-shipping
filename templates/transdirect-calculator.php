@@ -20,7 +20,7 @@ global $woocommerce, $wpdb;
 	jQuery(document).ready(function() {
 		var mode = '<?php echo $getTitle->mode; ?>';
 		jQuery("#to_postcode").hide();
-		imageUrl = "<?php echo ACL_TRANSDIRECT_URL; ?>/assets/images/ajax-loader-bg.gif";
+		imageUrl = "<?php echo TD_SHIPPING_URL; ?>/assets/images/ajax-loader-bg.gif";
 		jQuery('body').click(function() {
 			jQuery('#autocomplete-div').hide('');
 			jQuery('#dynamic_content').hide('');

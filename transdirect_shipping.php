@@ -15,25 +15,6 @@
 
 if (!defined('ABSPATH')) exit; //Exit if accessed directly
 
-/* Define paths so hardcoded urls aren't needed */
-try {
-    // Define plugin path and URL
-    if ( ! defined( 'ACL_TRANSDIRECT_PATH' ) ) {
-        define( 'ACL_TRANSDIRECT_PATH', plugin_dir_path( __FILE__ ) );
-    }
-    if ( ! defined( 'ACL_TRANSDIRECT_URL' ) ) {
-        define( 'ACL_TRANSDIRECT_URL', plugin_dir_url( __FILE__ ) );
-    }
-} catch ( Exception $e ) {
-    // Log exception or show an admin notice
-    //error_log( 'ACL WC Shortcodes JICS - Exception: ' . $e->getMessage() );
-    if ( is_admin() ) {
-        add_action( 'admin_notices', function() use ( $e ) {
-            echo '<div class="notice notice-error"><p>' . esc_html__( 'ACL Transdirect Shipping:', 'acl_woocommerce_transdirect' ) . ' ' . esc_html( $e->getMessage() ) . '</p></div>';
-        } );
-    }
-}
-
 // if (!session_id()) session_start();
 
 /*
