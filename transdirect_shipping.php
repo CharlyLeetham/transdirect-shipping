@@ -59,8 +59,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                     $this->supports             = array(
                         'shipping-zones',
                         'settings',
-                        'instance-settings',
-                        'instance-settings-modal',
+                        'instance-settings'
                     );                                         
                    
                     $this->wc_shipping_init();
@@ -83,7 +82,10 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                     // This is part of the settings API. Loads settings you previously init.
                     $this->init_settings();
 
-                    if (isset($this->settings['title'])) {
+                    // Define user set variables.
+                    $this->title    = isset($this->settings['title']) ? $this->settings['title'] : __('Transdirect', 'woocommerce');
+
+ /*                   if (isset($this->settings['title'])) {
                         $this->title = $this->settings['title'];
                     }
                     else {
@@ -95,7 +97,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                     else {
                         $this->enabled = $this->settings['enabled'];
                     }
-
+*/
                     // Save settings in admin if you have any defined
                     if(version_compare( get_option( 'woocommerce_version' ), '3.5.0', '>=' )){
                         $this->process_admin_options();
