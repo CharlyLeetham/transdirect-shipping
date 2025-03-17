@@ -230,7 +230,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     *
     */
     function td_woocommerce_transdirect_add($methods) {
-        $methods['Transdirect'] = 'WC_Transdirect_Shipping';
+        $methods['woocommerce_transdirect'] = 'WC_Transdirect_Shipping';
         return $methods;
     }
     
