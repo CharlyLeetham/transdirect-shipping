@@ -48,15 +48,21 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                 * @access public
                 *
                 */
-                public function __construct() {
+                public function __construct( $instance_id = 0 ) {
                     
+                    $this->instance_id = absint( $instance_id );
                     error_log("WC_Transdirect_Shipping class is being instantiated...");
                     $this->id = 'woocommerce_transdirect';
                     load_plugin_textdomain($this->id, false, dirname(plugin_basename(__FILE__)) . '/lang/');
                     $this->method_title = __('Transdirect Shipping', $this->id);
                     $this->method_description = __('', $this->id);
+                    $this->supports             = array(
+                        'shipping-zones',
+                        'instance-settings',
+                        'instance-settings-modal',
+                    );                    
                     $this->wc_shipping_init();
-                }
+                }               
 
                 /**
                 *
@@ -95,7 +101,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                         add_action( 'woocommerce_update_options_shipping_' . $this->id, array($this, 'process_admin_options'));
                     }
                 }
-
+                               
                 /**
                 *
                 * Initialize shipping form fields.
@@ -1019,20 +1025,6 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     function td_custom_admin_notice(){
         if (empty(td_get_auth_api_key()) && td_get_auth_api_key() == "") {
             echo '<div class="notice notice-warning woocommerce-message is-dismissible"><p>Transdirect shipping is almost ready. To get started, <a href="'.admin_url('admin.php?page=wc-settings&tab=shipping&section=woocommerce_transdirect').'">set your transdirect shipping api key.</a></p></div>';
-        }
-    }
-
-    add_action('admin_init', 'td_debug_shipping_methods', 20);
-
-    function td_debug_shipping_methods() {
-        if (!current_user_can('manage_options')) return; // Only allow admins to run this
-
-        global $woocommerce;
-        if (isset(WC()->shipping)) {
-            $methods = WC()->shipping()->get_shipping_methods();
-            error_log('TD Debug Shipping:' .print_r($methods, true)); // Logs all registered shipping methods
-        } else {
-            error_log('WC()->shipping() is not initialized.');
         }
     }
 
