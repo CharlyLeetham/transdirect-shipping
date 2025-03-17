@@ -121,8 +121,6 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                         'authentication'  => array(
                             'type'              => 'authentication'
                         ),                      
-                    );
-                    $this->instance_form_fields = array(
                         'title'            => array(
                             'title'       => __( 'Name', 'woocommerce' ),
                             'type'        => 'text',
@@ -130,7 +128,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                             'default'     => $this->method_title,
                             'placeholder' => __( 'e.g. Transdirect', 'woocommerce' ),
                             'desc_tip'    => true,
-                        ),
+                        )
                     );                    
                 }
 
