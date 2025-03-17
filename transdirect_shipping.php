@@ -9,7 +9,7 @@
  * Author: Ask Charly Leetham
  * Author URI: https://askcharlyleetham.com
  * Contributors: Transdirect, bywave, CharlyLeetham
- * Text Domain: woocommerce_transdirect
+ * Text Domain: acl_woocommerce_transdirect
  * Domain Path: /lang
 **/
 
