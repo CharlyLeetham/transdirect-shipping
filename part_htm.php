@@ -198,7 +198,7 @@
 	}
 
 	.loadinggif {
-		background:url('<php echo ACL_WC_SHORTCODES_URL; ?>/ajax-loader.gif') no-repeat right center;
+		background:url('<php echo ACL_TRANSDIRECT_URL; ?>/ajax-loader.gif') no-repeat right center;
 	}
 
 	.placeholder {

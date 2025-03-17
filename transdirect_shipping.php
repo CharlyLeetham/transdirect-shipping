@@ -18,11 +18,11 @@ if (!defined('ABSPATH')) exit; //Exit if accessed directly
 /* Define paths so hardcoded urls aren't needed */
 try {
     // Define plugin path and URL
-    if ( ! defined( 'ACL_WC_SHORTCODES_PATH' ) ) {
-        define( 'ACL_WC_SHORTCODES_PATH', plugin_dir_path( __FILE__ ) );
+    if ( ! defined( 'ACL_TRANSDIRECT_PATH' ) ) {
+        define( 'ACL_TRANSDIRECT_PATH', plugin_dir_path( __FILE__ ) );
     }
-    if ( ! defined( 'ACL_WC_SHORTCODES_URL' ) ) {
-        define( 'ACL_WC_SHORTCODES_URL', plugin_dir_url( __FILE__ ) );
+    if ( ! defined( 'ACL_TRANSDIRECT_URL' ) ) {
+        define( 'ACL_TRANSDIRECT_URL', plugin_dir_url( __FILE__ ) );
     }
 } catch ( Exception $e ) {
     // Log exception or show an admin notice
