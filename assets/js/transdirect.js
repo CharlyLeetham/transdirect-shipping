@@ -341,6 +341,7 @@ function get_quote_new() {
 
 
 function validate() {
+    console.log ('Validating quote');
     var postcode = document.getElementById('to_postcode').value;
     if (document.getElementById('to_location').value == 'Australia') {
         alert("Please select a delivery location.");
