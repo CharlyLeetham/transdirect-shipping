@@ -15,6 +15,25 @@
 
 if (!defined('ABSPATH')) exit; //Exit if accessed directly
 
+/* Define paths so hardcoded urls aren't needed */
+try {
+    // Define plugin path and URL
+    if ( ! defined( 'ACL_WC_SHORTCODES_PATH' ) ) {
+        define( 'ACL_WC_SHORTCODES_PATH', plugin_dir_path( __FILE__ ) );
+    }
+    if ( ! defined( 'ACL_WC_SHORTCODES_URL' ) ) {
+        define( 'ACL_WC_SHORTCODES_URL', plugin_dir_url( __FILE__ ) );
+    }
+} catch ( Exception $e ) {
+    // Log exception or show an admin notice
+    //error_log( 'ACL WC Shortcodes JICS - Exception: ' . $e->getMessage() );
+    if ( is_admin() ) {
+        add_action( 'admin_notices', function() use ( $e ) {
+            echo '<div class="notice notice-error"><p>' . esc_html__( 'ACL Transdirect Shipping:', 'acl_woocommerce_transdirect' ) . ' ' . esc_html( $e->getMessage() ) . '</p></div>';
+        } );
+    }
+}
+
 // if (!session_id()) session_start();
 
 /*
@@ -52,7 +71,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                 public function __construct( $instance_id = 0 ) {
                     
                     $this->instance_id = absint( $instance_id );
-                    $this->id = 'woocommerce_transdirect';
+                    $this->id = 'acl_woocommerce_transdirect';
                     load_plugin_textdomain($this->id, false, dirname(plugin_basename(__FILE__)) . '/lang/');
                     $this->method_title = __('Transdirect Shipping', $this->id);
                     $this->method_description = __('', $this->id);
@@ -83,7 +102,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                     $this->init_settings();
 
                     // Define user set variables.
-                    $this->title    = isset( $this->settings['title'] ) ? $this->settings['title'] : __( 'Transdirect', 'woocommerce_transdirect' );
+                    $this->title    = isset( $this->settings['title'] ) ? $this->settings['title'] : __( 'Transdirect', 'acl_woocommerce_transdirect' );
                     $this->description = isset( $this->settings['description'] ) ? $this->settings['description'] : __( 'Uses Transdirect for pricing.', 'woocommerc' );
 
                     if (isset($this->settings['enabled'])) {
@@ -110,28 +129,28 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                 function init_form_fields() {
                     $this->form_fields = array(
                         'enabled' => array(
-                            'title'       => __( 'Enable', 'woocommerce_transdirect' ),
+                            'title'       => __( 'Enable', 'acl_woocommerce_transdirect' ),
                             'type'        => 'checkbox',
-                            'label'       => __( 'Enable Transdirect', 'woocommerce_transdirect' ),
+                            'label'       => __( 'Enable Transdirect', 'acl_woocommerce_transdirect' ),
                             'default'     => 'no'
                         ),
                         'authentication'  => array(
                             'type'              => 'authentication'
                         ),                      
                         'title'            => array(
-                            'title'       => __( 'Name', 'woocommerce_transdirect' ),
+                            'title'       => __( 'Name', 'acl_woocommerce_transdirect' ),
                             'type'        => 'text',
-                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'woocommerce_transdirect' ),
+                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'acl_woocommerce_transdirect' ),
                             'default'     => $this->method_title,
-                            'placeholder' => __( 'e.g. Transdirect', 'woocommerce_transdirect' ),
+                            'placeholder' => __( 'e.g. Transdirect', 'acl_woocommerce_transdirect' ),
                             'desc_tip'    => true,
                         ),
                         'description'            => array(
-                            'title'       => __( 'Description', 'woocommerce_transdirect' ),
+                            'title'       => __( 'Description', 'acl_woocommerce_transdirect' ),
                             'type'        => 'text',
-                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'woocommerce_transdirect' ),
+                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'acl_woocommerce_transdirect' ),
                             'default'     => $this->method_description,
-                            'placeholder' => __( 'e.g. Transdirect', 'woocommerce_transdirect' ),
+                            'placeholder' => __( 'e.g. Transdirect', 'acl_woocommerce_transdirect' ),
                             'desc_tip'    => true,
                         )
                     );                    
@@ -252,7 +271,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     *
     */
     function td_woocommerce_transdirect_add($methods) {
-        $methods['woocommerce_transdirect'] = 'WC_Transdirect_Shipping';
+        $methods['acl_woocommerce_transdirect'] = 'WC_Transdirect_Shipping';
         return $methods;
     }
     
@@ -337,7 +356,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     */
     function td_remove_local_pickup_free_label($full_label, $method) {
         global $wpdb;
-        if ($method->id == 'woocommerce_transdirect') {
+        if ($method->id == 'acl_woocommerce_transdirect') {
 
             $shipping_details_plugin = $wpdb->get_results( "SELECT `option_value` FROM " . $wpdb->prefix ."options WHERE `option_name` like '%woocommerce_transdirect_settings'");
             $shippin_data = unserialize($shipping_details_plugin[0]->option_value);
@@ -575,7 +594,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     */
     function td_return_custom_price() {
         global $post, $woocommerce;
-        if (WC()->session->chosen_shipping_methods[0] == 'woocommerce_transdirect') {
+        if (WC()->session->chosen_shipping_methods[0] == 'acl_woocommerce_transdirect') {
             if (!isset($_COOKIE['price'])) {
                 $priceData=  isset($_REQUEST['shipping_price']) ? $_REQUEST['shipping_price'] : 0 ;
                 store_data("price", $priceData);
@@ -620,7 +639,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
         $shipping_data = unserialize($shipping_details_plugin[0]->option_value);
         $selected_shipping_method = WC()->session->get( 'chosen_shipping_methods' );
 
-        if($shipping_data['enabled'] == 'yes' && ($selected_shipping_method[0] == 'woocommerce_transdirect') && isset($_COOKIE['price'])) {
+        if($shipping_data['enabled'] == 'yes' && ($selected_shipping_method[0] == 'acl_woocommerce_transdirect') && isset($_COOKIE['price'])) {
             $packages[] = array(
                 'contents'        => WC()->cart->get_cart(),
                 'contents_cost'   => $_COOKIE['price'],
@@ -709,7 +728,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
             }
         }
         WC()->cart->calculate_totals();
-        WC()->session->set('chosen_shipping_methods', array( 'woocommerce_transdirect' ) );
+        WC()->session->set('chosen_shipping_methods', array( 'acl_woocommerce_transdirect' ) );
         $location              = explode(',', $_REQUEST['location']);
         $resp                  = array();
         $resp['courier_price'] = number_format($_REQUEST['shipping_price'], 2);
@@ -807,7 +826,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     *
     */
     function td_custom_process_before_checkout() {
-       if(WC()->session->chosen_shipping_methods[0] == 'woocommerce_transdirect'){
+       if(WC()->session->chosen_shipping_methods[0] == 'acl_woocommerce_transdirect'){
             if(empty($_COOKIE['price']) && empty($_COOKIE['selected_courier'])){
                 wc_add_notice( __('Please select a Shipping Quote.' ), 'error' );
             }
