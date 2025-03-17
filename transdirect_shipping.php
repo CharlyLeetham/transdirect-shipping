@@ -56,11 +56,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                     load_plugin_textdomain($this->id, false, dirname(plugin_basename(__FILE__)) . '/lang/');
                     $this->method_title = __('Transdirect Shipping', $this->id);
                     $this->method_description = __('', $this->id);
-                    $this->supports             = array(
-                        'shipping-zones',
-                        'instance-settings',
-                        'instance-settings-modal',
-                    );                    
+                   
                     $this->wc_shipping_init();
                 }               
 
