@@ -49,7 +49,8 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                 *
                 */
                 public function __construct() {
-
+                    
+                    error_log("WC_Transdirect_Shipping class is being instantiated...");
                     $this->id = 'woocommerce_transdirect';
                     load_plugin_textdomain($this->id, false, dirname(plugin_basename(__FILE__)) . '/lang/');
                     $this->method_title = __('Transdirect Shipping', $this->id);
@@ -1021,7 +1022,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
         }
     }
 
-    add_action('admin_init', 'td_debug_shipping_methods');
+    add_action('admin_init', 'td_debug_shipping_methods', 20);
 
     function td_debug_shipping_methods() {
         if (!current_user_can('manage_options')) return; // Only allow admins to run this
