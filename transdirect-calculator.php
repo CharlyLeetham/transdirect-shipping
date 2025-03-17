@@ -102,7 +102,7 @@ global $woocommerce, $wpdb; ?>
 	}
 
 	.loadinggif {
-		background:url('<?php echo site_url(); ?>/wp-content/plugins/transdirect-shipping/ajax-loader.gif') no-repeat right center;
+		background:url('<php echo ACL_WC_SHORTCODES_URL; ?>/ajax-loader.gif') no-repeat right center;
 	}
 
 	span.close-option {
