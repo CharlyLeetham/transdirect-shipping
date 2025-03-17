@@ -1,5 +1,5 @@
 === Transdirect Shipping Plugin for Woocommerce ===
-Contributors: transdirect, bywave
+Contributors: transdirect, bywave, charlyleetham
 Tags: transdirect, quote, quotes, quick quotes, courier, couriers, freight, freights, shipping, delivery, toll, toll ipec, fastway, couriers please, toll priority, northline, cart, checkout, configurable, woocommerce, woo-commerce, ecommerce, e-commerce, commerce, wordpress ecommerce
 Requires at least: 4.2
 Tested up to: 5.9.2

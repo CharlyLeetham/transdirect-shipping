@@ -8,7 +8,7 @@
  * Version: 1.0.0
  * Author: Ask Charly Leetham
  * Author URI: https://askcharlyleetham.com
- * Contributors: Transdirect, CharlyLeetham
+ * Contributors: Transdirect, bywave, CharlyLeetham
  * Text Domain: woocommerce_transdirect
  * Domain Path: /lang
 **/
@@ -52,7 +52,6 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                 public function __construct( $instance_id = 0 ) {
                     
                     $this->instance_id = absint( $instance_id );
-                    error_log("WC_Transdirect_Shipping class is being instantiated...");
                     $this->id = 'woocommerce_transdirect';
                     load_plugin_textdomain($this->id, false, dirname(plugin_basename(__FILE__)) . '/lang/');
                     $this->method_title = __('Transdirect Shipping', $this->id);
