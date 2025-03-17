@@ -351,7 +351,7 @@
 				<table width="100%">
 					<td colspan="3" width="50%">
 						<div class="logoSection">
-							<img src="<?php echo plugins_url(); ?>/transdirect-shipping/logo-transdirect.png" width="100%"/>
+							<img src="<?php echo ACL_TRANSDIRECT_URL; ?>//logo-transdirect.png" width="100%"/>
 						</div>
 					</td>
 					<td width="25%">
