@@ -1030,7 +1030,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
         global $woocommerce;
         if (isset(WC()->shipping)) {
             $methods = WC()->shipping()->get_shipping_methods();
-            error_log(print_r($methods, true)); // Logs all registered shipping methods
+            error_log('TD Debug Shipping:' .print_r($methods, true)); // Logs all registered shipping methods
         } else {
             error_log('WC()->shipping() is not initialized.');
         }
