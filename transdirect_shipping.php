@@ -120,6 +120,16 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                             'type'              => 'authentication'
                         ),                      
                     );
+                    $this->instance_form_fields = array(
+                        'title'            => array(
+                            'title'       => __( 'Name', 'woocommerce' ),
+                            'type'        => 'text',
+                            'description' => __( 'Your customers will see the name of this shipping method during checkout.', 'woocommerce' ),
+                            'default'     => $this->method_title,
+                            'placeholder' => __( 'e.g. Transdirect', 'woocommerce' ),
+                            'desc_tip'    => true,
+                        ),
+                    );                    
                 }
 
                 /**
@@ -238,7 +248,6 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     */
     function td_woocommerce_transdirect_add($methods) {
         $methods['woocommerce_transdirect'] = 'WC_Transdirect_Shipping';
-        error_log("wC Methods: ". print_r($methods, true));
         return $methods;
     }
     
