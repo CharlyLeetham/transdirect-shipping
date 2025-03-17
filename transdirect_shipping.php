@@ -119,6 +119,13 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                         'authentication'  => array(
                             'type'              => 'authentication'
                         ),
+                        'title'      => array(
+                            'title'         => __( 'Title', 'woocommerce' ),
+                            'type'          => 'text',
+                            'description'   => __( 'This controls the title which the user sees during checkout.', 'woocommerce' ),
+                            'default'       => $this->method_title,
+                            'desc_tip'      => true,
+                        )                        
                     );
                 }
 
