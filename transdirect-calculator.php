@@ -305,7 +305,7 @@ global $woocommerce, $wpdb; ?>
 <script>
 	jQuery(document).ready(function() {
 		jQuery("#to_postcode").hide();
-		imageUrl = "<?php echo site_url(); ?>/wp-content/plugins/transdirect-shipping/ajax-loader-bg.gif";
+		imageUrl = "<?php echo ACL_TRANSDIRECT_URL; ?>/ajax-loader-bg.gif";
 		jQuery('body').click(function() {
 			jQuery('#autocomplete-div').hide('');
 			jQuery('#dynamic_content').hide('');
