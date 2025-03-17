@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: ACL Transdirect Shipping
- * Plugin URI: https://www.transdirect.com.au/e-commerce/woo-commerce/
+ * Plugin URI: https://github.com/CharlyLeetham/transdirect-shipping
  * Description: This plugin allows you to calculate shipping as per your delivery location.
  * FAQ: https://www.transdirect.com.au/e-commerce/woo-commerce/
  * Version: 1.0.0
