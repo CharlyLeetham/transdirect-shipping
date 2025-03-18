@@ -58,9 +58,9 @@ class Quotes {
         global $wpdb;
         
         $shipping_details = $wpdb->get_results("SELECT `option_value` FROM " . $wpdb->prefix ."options WHERE `option_name` like '%woocommerce_transdirect_settings'");
-        error_log ( 'Shipping details : ' . $shipping_details );
+        error_log ( 'Shipping details : ' . print_r ( $shipping_details, true ) );
         $default_values = unserialize($shipping_details[0]->option_value);
-        error_log ( 'Default : ' . $default_values );
+        error_log ( 'Default : ' . print_r( $default_values, true ) );
         $quotes_timeout = $default_values['quotes_timeout'];
         error_log ( 'Quotes timeout : ' . $quotes_timeout );
 
@@ -86,7 +86,6 @@ class Quotes {
         error_log ( 'store_data:' . print_r( $store_data, true ) );
 
         $cart_content = WC()->cart->get_cart();
-        error_log ( 'cart_content:' . print_r( $cart_content, true ) );
         $api_arr = array_merge($api_arr, $this->td_get_cart_items($cart_content));
         
         error_log ( '$api_arr2:' . print_r( $api_arr, true ) );
