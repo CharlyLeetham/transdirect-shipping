@@ -259,3 +259,8 @@ form.checkout.woocommerce-checkout .tdCalc{
     cursor: pointer;
     border-radius: 3px;
 }
+
+.shipping_type_radio {
+	position: static;
+	opacity: 1;
+}
