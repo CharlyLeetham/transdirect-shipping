@@ -132,13 +132,13 @@ table.form-table.td-shipping td table td {
 }
 .td-trans-frm{	
 	right: 0;
-	width:350px !important;
+	width:90%;
 	text-indent:0;
 	padding:5px;
 	margin-bottom:20px;
-	border:1px solid #ededed;
+	border:0px solid #ededed;
 	margin-top: 0px;
-	background-color:#FFFFFF;
+	background-color:transparent;
 	position:relative;
 }
 .td-trans-frm h4 {
@@ -212,8 +212,9 @@ form.checkout.woocommerce-checkout .tdCalc{
 	margin-top: 80px;
 }
 #to_location {
-	width: 100%;
+
 }
+
 #to_postcode {
 	width: 100%;
 	margin-top: 10px;
