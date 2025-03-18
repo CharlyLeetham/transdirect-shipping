@@ -260,7 +260,7 @@ form.checkout.woocommerce-checkout .tdCalc{
     border-radius: 3px;
 }
 
-.shipping_type_radio {
+input[type=radio].shipping_type_radio {
 	position: static;
 	opacity: 1;
 }
