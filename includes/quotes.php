@@ -62,10 +62,10 @@ class Quotes {
         $receiver_suburb = !empty($explode_to[1]) ? strtoupper($explode_to[1]) : 'UNKNOWN';
 
         // Split country and state if needed
-        if (strpos($shop_address['shop_country'], ':') !== false) {
-            list($shop_address['shop_country'], $shop_address['shop_state']) = explode(':', $shop_address['shop_country']);
+        if (strpos($shop_address['country'], ':') !== false) {
+            list($shop_address['country'], $shop_address['state']) = explode(':', $shop_address['country']);
         } else {
-            $shop_address['shop_state'] = '';
+            $shop_address['state'] = '';
         }
 
 
