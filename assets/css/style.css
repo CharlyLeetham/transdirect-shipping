@@ -260,7 +260,7 @@ form.checkout.woocommerce-checkout .tdCalc{
     border-radius: 3px;
 }
 
-input[type=radio].shipping_type_radio, .cart-template-wrapper .woocommerce .cart_totals .td-trans-frm input[type=radio].shipping_type_radio {
+input[type=radio].shipping_type_radio, .cart-template-wrapper .woocommerce .cart_totals .td-trans-frm input[type=radio].shipping_type_radio, .woocommerce-checkout .td-trans-frm input[type=radio] {
 	position: static;
 	opacity: 1;
 }
