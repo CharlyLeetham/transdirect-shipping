@@ -56,6 +56,11 @@ class Quotes {
             'country'  => get_option('woocommerce_default_country', 'AU'), // Country (e.g., AU:ACT)
         ];
 
+        // Ensure receiver details have defaults
+        $receiver_country = !empty($country_to) ? strtoupper($country_to) : 'AU';
+        $receiver_postcode = isset($postcode_to) ? $postcode_to : ($explode_to[0] ?? '0000');
+        $receiver_suburb = !empty($explode_to[1]) ? strtoupper($explode_to[1]) : 'UNKNOWN';
+
         // Split country and state if needed
         if (strpos($shop_address['shop_country'], ':') !== false) {
             list($shop_address['shop_country'], $shop_address['shop_state']) = explode(':', $shop_address['shop_country']);
