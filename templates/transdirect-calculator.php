@@ -186,9 +186,9 @@ global $woocommerce, $wpdb;
 	                <div id="autocomplete-div"></div>
 	            </p>
 	            <p class="form-row form-row-wide">
-	                <input type="radio" name="to_type" id="business" value="business" <?php if($getTitle->street_type == 'business' ):?> checked="checked"
+	                <input type="radio" name="to_type" id="business" class="shipping_type_radio" value="business" <?php if($getTitle->street_type == 'business' ):?> checked="checked"
 	                <?php endif; ?>/> Commercial
-	                <input type="radio" name="to_type" class="td-residential" id="residential" value="residential" <?php if ($getTitle->street_type == 'residential' ): ?> checked="checked"
+	                <input type="radio" name="to_type" class="td-residential shipping_type_radio" id="residential" value="residential" <?php if ($getTitle->street_type == 'residential' ): ?> checked="checked"
 	                <?php endif; ?>/> Residential
 	            </p>
 	            <input type="hidden" name="td_value" id="td_value">
