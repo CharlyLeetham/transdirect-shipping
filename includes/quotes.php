@@ -76,7 +76,7 @@ class Quotes {
                 'address'  => !empty($shop_address['address']) ? $shop_address['address'] : 'UNKNOWN',
                 'postcode' => !empty($shop_address['postcode']) ? $shop_address['postcode'] : '0000',
                 'suburb'   => !empty($shop_address['city']) ? strtoupper($shop_address['city']) : 'UNKNOWN',
-                'type'     => 'Business', // Always set to Business
+                'type'     => 'business', // Always set to Business
                 'country'  => $shop_address['country'],
             ],
             'receiver' => [
