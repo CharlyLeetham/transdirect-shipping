@@ -49,13 +49,12 @@ class Quotes {
         $quotes_timeout = $default_values['quotes_timeout'];
 
         // Get WooCommerce shop address details
-        $shop_address = array(
-            'shop_address_1' => get_option('woocommerce_store_address'), // Street address
-            'shop_address_2' => get_option('woocommerce_store_address_2'), // Additional address info
-            'shop_city'      => get_option('woocommerce_store_city'), // City
-            'shop_postcode'  => get_option('woocommerce_store_postcode'), // Postcode
-            'shop_country'   => get_option('woocommerce_default_country') // Country (e.g., AU:ACT)
-        );
+        $shop_address = [
+            'address'  => trim(get_option('woocommerce_store_address', '') . ' ' . get_option('woocommerce_store_address_2', '')), // Merge address lines
+            'city'     => get_option('woocommerce_store_city', ''), // City
+            'postcode' => get_option('woocommerce_store_postcode', ''), // Postcode
+            'country'  => get_option('woocommerce_default_country', 'AU'), // Country (e.g., AU:ACT)
+        ];
 
         // Split country and state if needed
         if (strpos($shop_address['shop_country'], ':') !== false) {
