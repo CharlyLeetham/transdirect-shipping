@@ -18,8 +18,10 @@ if( !defined( 'ABSPATH' ) ) exit;
 *
 */
 function td_add_my_css_and_my_js_files() {
-    wp_enqueue_script('transdirect-script', TD_SHIPPING_URL.'assets/js/transdirect.js', array('jquery'), '1.2.3.4.5', true);
-    wp_enqueue_script('transdirect-country-script', TD_SHIPPING_URL.'assets/js/countrySelect.js', array('jquery'), '', true);
+    $script_path = TD_SHIPPING_DIR . 'assets/js/transdirect.js';
+    $version_script = filemtime( $script_path );
+    wp_enqueue_script('transdirect-script', TD_SHIPPING_URL.'assets/js/transdirect.js', array('jquery'), $version_script, true);
+    wp_enqueue_script('transdirect-country-script', TD_SHIPPING_URL.'assets/js/countrySelect.js', array('jquery'), $version_script, true);
     wp_enqueue_style('transdirect-country-css', TD_SHIPPING_URL.'assets/css/countrySelect.css');
     wp_enqueue_style('style', TD_SHIPPING_URL. 'assets/css/style.css');
     wp_localize_script( 'transdirect-script', 'MyAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )) );
