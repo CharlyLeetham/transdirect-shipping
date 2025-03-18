@@ -19,34 +19,50 @@ if( !defined( 'ABSPATH' ) ) exit;
  */
 class Quotes {
     function td_get_quote() {
+        error_log ( 'Starting Quote proccess' );
+
+        error_log ( '$_POST:' . print_r( $_POST, true ) );
         // Get default settings
         $getTitle = td_getApiDetails();
+        error_log ( "GetTitle: " . $getTitle );
         if(strpos($_POST['to_location'], ',')){
             $explode_to     = explode(',', $_POST['to_location']);
+            error_log ( 'Location : ' . $explode_to );
         } else {
             $country_to     = strtoupper($_POST['country']);
+            error_log ( 'Country : ' . $country_to );
             $postcode_to    = $_POST['to_postcode'];
+            error_log ( 'Postcode : ' . $postcode_to );
         }
         if($getTitle->mode != "simplified_mode") {
             $country_to = isset($country_to) ? $country_to : 'AU';
+            error_log ( 'Country2 : ' . $country_to );
         } else {
             $country_to = $_POST['country'] ? $_POST['country'] : 'AU'; 
+            error_log ( 'Country3 : ' . $country_to );
         }
 
         if(isset($_POST['to_type']) && !empty($_POST['to_type'])){
             $to_type = $_POST['to_type'];
+            error_log ( 'to_type : ' . $to_type );
         }else{
             $to_type = $getTitle->street_type;
+            error_log ( 'to_type1 : ' . $to_type );
         }
 
         $suburb = $explode_to[1] ? strtoupper($explode_to[1]) : '';
+        error_log ( 'suburb : ' . $suburb );
         $postcode = isset($postcode_to) ? $postcode_to : $explode_to[0];
+        error_log ( 'Postcode2 : ' . $postcode );
 
         global $wpdb;
         
         $shipping_details = $wpdb->get_results("SELECT `option_value` FROM " . $wpdb->prefix ."options WHERE `option_name` like '%woocommerce_transdirect_settings'");
+        error_log ( 'Shipping details : ' . $shipping_details );
         $default_values = unserialize($shipping_details[0]->option_value);
+        error_log ( 'Default : ' . $default_values );
         $quotes_timeout = $default_values['quotes_timeout'];
+        error_log ( 'Quotes timeout : ' . $quotes_timeout );
 
         // Set request array for td quote api
         $api_arr = [];
@@ -61,19 +77,28 @@ class Quotes {
         $api_arr['total_amount']  =  floatval(WC()->cart->total);
         $api_arr['timeout']  = $quotes_timeout;
 
+        error_log ( '$api_arr:' . print_r( $api_arr, true ) );
+
         store_data('postcode', $api_arr['receiver']['postcode']);
         store_data('to_location', $api_arr['receiver']['suburb']);
         store_data('to_country', $api_arr['receiver']['country']);
 
+        error_log ( 'store_data:' . print_r( $store_data, true ) );
+
         $cart_content = WC()->cart->get_cart();
+        error_log ( 'cart_content:' . print_r( $cart_content, true ) );
         $api_arr = array_merge($api_arr, $this->td_get_cart_items($cart_content));
         
+        error_log ( '$api_arr2:' . print_r( $api_arr, true ) );
         $args = array();
         $args =  td_request_method_headers($default_values['api_key'], $api_arr, 'POST');
+
+        error_log ( '$args:' . print_r( $args, true ) );
 
         // Send request to td api to get quote
         $link                   = "https://www.transdirect.com.au/api/bookings/v4";
         $response               = wp_remote_retrieve_body(wp_remote_post($link, $args));
+        error_log ( '$response1:' . print_r( $response, true ) );
         $response               = str_replace("true // true if the booking has a tailgate delivery, false if not", "0", $response);
         $response               = str_replace("''", "0", $response);
         $shipping_quotes        = json_decode(str_replace("''", "0", $response));

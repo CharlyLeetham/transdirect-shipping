@@ -506,13 +506,13 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
         $api_arr = ['test_api_key' => true];
     
         // Log API Key (Be cautious with logging sensitive information)
-        error_log("API Key Used: " . print_r($apiKey, true));
+        //error_log("API Key Used: " . print_r($apiKey, true));
     
         // Prepare request arguments
         $args = td_request_method_headers($apiKey, $api_arr, 'POST');
     
         // Log the request arguments
-        error_log("Request Arguments: " . print_r($args, true));
+        //error_log("Request Arguments: " . print_r($args, true));
     
         // API URL
         $link = "https://www.transdirect.com.au/api/bookings/v4/test_api_key_settings";
@@ -521,13 +521,13 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
         $response = wp_remote_get($link, $args);
     
         // Log full response
-        error_log("Full Response: " . print_r($response, true));
+        //error_log("Full Response: " . print_r($response, true));
     
         // Get body of the response
         $response_body = wp_remote_retrieve_body($response);
     
         // Log response body
-        error_log("Response Body: " . $response_body);
+        //error_log("Response Body: " . $response_body);
     
         // Output response
         echo $response_body;
