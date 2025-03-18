@@ -52,7 +52,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
                 public function __construct( $instance_id = 0 ) {
                     
                     $this->instance_id = absint( $instance_id );
-                    $this->id = 'acl_woocommerce_transdirect';
+                    $this->id = 'woocommerce_transdirect';
                     load_plugin_textdomain($this->id, false, dirname(plugin_basename(__FILE__)) . '/lang/');
                     $this->method_title = __('Transdirect Shipping', $this->id);
                     $this->method_description = __('', $this->id);
@@ -230,7 +230,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     * Hook for adding action for woocommerce_shipping_init
     *
     */
-    add_action('woocommerce_shipping_init', 'woocommerce_transdirect_init' );
+    add_action( 'woocommerce_shipping_init', 'woocommerce_transdirect_init' );
     add_filter( 'https_local_ssl_verify', '__return_false' );
     add_filter( 'https_ssl_verify', '__return_false' );
 
@@ -252,7 +252,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     *
     */
     function td_woocommerce_transdirect_add($methods) {
-        $methods['acl_woocommerce_transdirect'] = 'WC_Transdirect_Shipping';
+        $methods['woocommerce_transdirect'] = 'WC_Transdirect_Shipping';
         return $methods;
     }
     
@@ -337,7 +337,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     */
     function td_remove_local_pickup_free_label($full_label, $method) {
         global $wpdb;
-        if ($method->id == 'acl_woocommerce_transdirect') {
+        if ($method->id == 'woocommerce_transdirect') {
 
             $shipping_details_plugin = $wpdb->get_results( "SELECT `option_value` FROM " . $wpdb->prefix ."options WHERE `option_name` like '%woocommerce_transdirect_settings'");
             $shippin_data = unserialize($shipping_details_plugin[0]->option_value);
@@ -502,12 +502,35 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
 
     // validate api key in td system
     function check_api_key_details(){
-        $apiKey   = $_POST['apiKey'];
+        $apiKey = $_POST['apiKey'];
         $api_arr = ['test_api_key' => true];
+    
+        // Log API Key (Be cautious with logging sensitive information)
+        //error_log("API Key Used: " . print_r($apiKey, true));
+    
+        // Prepare request arguments
         $args = td_request_method_headers($apiKey, $api_arr, 'POST');
+    
+        // Log the request arguments
+        //error_log("Request Arguments: " . print_r($args, true));
+    
+        // API URL
         $link = "https://www.transdirect.com.au/api/bookings/v4/test_api_key_settings";
-        $response = wp_remote_retrieve_body(wp_remote_get($link, $args));
-        echo $response;
+    
+        // Send request
+        $response = wp_remote_get($link, $args);
+    
+        // Log full response
+        //error_log("Full Response: " . print_r($response, true));
+    
+        // Get body of the response
+        $response_body = wp_remote_retrieve_body($response);
+    
+        // Log response body
+        //error_log("Response Body: " . $response_body);
+    
+        // Output response
+        echo $response_body;
         exit();
     }
 
@@ -575,7 +598,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     */
     function td_return_custom_price() {
         global $post, $woocommerce;
-        if (WC()->session->chosen_shipping_methods[0] == 'acl_woocommerce_transdirect') {
+        if (WC()->session->chosen_shipping_methods[0] == 'woocommerce_transdirect') {
             if (!isset($_COOKIE['price'])) {
                 $priceData=  isset($_REQUEST['shipping_price']) ? $_REQUEST['shipping_price'] : 0 ;
                 store_data("price", $priceData);
@@ -620,7 +643,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
         $shipping_data = unserialize($shipping_details_plugin[0]->option_value);
         $selected_shipping_method = WC()->session->get( 'chosen_shipping_methods' );
 
-        if($shipping_data['enabled'] == 'yes' && ($selected_shipping_method[0] == 'acl_woocommerce_transdirect') && isset($_COOKIE['price'])) {
+        if($shipping_data['enabled'] == 'yes' && ($selected_shipping_method[0] == 'woocommerce_transdirect') && isset($_COOKIE['price'])) {
             $packages[] = array(
                 'contents'        => WC()->cart->get_cart(),
                 'contents_cost'   => $_COOKIE['price'],
@@ -709,7 +732,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
             }
         }
         WC()->cart->calculate_totals();
-        WC()->session->set('chosen_shipping_methods', array( 'acl_woocommerce_transdirect' ) );
+        WC()->session->set('chosen_shipping_methods', array( 'woocommerce_transdirect' ) );
         $location              = explode(',', $_REQUEST['location']);
         $resp                  = array();
         $resp['courier_price'] = number_format($_REQUEST['shipping_price'], 2);
@@ -807,7 +830,7 @@ if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get
     *
     */
     function td_custom_process_before_checkout() {
-       if(WC()->session->chosen_shipping_methods[0] == 'acl_woocommerce_transdirect'){
+       if(WC()->session->chosen_shipping_methods[0] == 'woocommerce_transdirect'){
             if(empty($_COOKIE['price']) && empty($_COOKIE['selected_courier'])){
                 wc_add_notice( __('Please select a Shipping Quote.' ), 'error' );
             }

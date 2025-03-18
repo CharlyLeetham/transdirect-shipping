@@ -1,4 +1,4 @@
-=== Transdirect Shipping Plugin for Woocommerce ===
+=== ACL Transdirect Shipping Plugin for Woocommerce ===
 Contributors: transdirect, bywave, charlyleetham
 Tags: transdirect, quote, quotes, quick quotes, courier, couriers, freight, freights, shipping, delivery, toll, toll ipec, fastway, couriers please, toll priority, northline, cart, checkout, configurable, woocommerce, woo-commerce, ecommerce, e-commerce, commerce, wordpress ecommerce
 Requires at least: 4.2
@@ -7,6 +7,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 This plugin provides delivery quotes from Australia's largest carriers in a seamless checkout process.
+It has been modified by Charly Leetham to work correctly.
 
 == Description ==
 

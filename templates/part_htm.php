@@ -62,7 +62,7 @@
 				<table width="100%">
 					<td colspan="3" width="50%">
 						<div class="td-logoSection">
-							<img src="<?php echo TD_SHIPPING_URL; ?>//assets/images/logo-transdirect.png" width="100%"/>
+							<img src="<?php echo TD_SHIPPING_URL; ?>/assets/images/logo-transdirect.png" width="100%"/>
 						</div>
 					</td>
 					<td width="25%">

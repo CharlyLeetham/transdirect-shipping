@@ -102,7 +102,7 @@ global $woocommerce, $wpdb; ?>
 	}
 
 	.loadinggif {
-		background:url('<?php echo TD_SHIPPING_URL; ?>/ajax-loader.gif') no-repeat right center;
+		background:url('<?php echo TD_SHIPPING_URL; ?>/assets/images/ajax-loader.gif') no-repeat right center;
 	}
 
 	span.close-option {
@@ -305,7 +305,7 @@ global $woocommerce, $wpdb; ?>
 <script>
 	jQuery(document).ready(function() {
 		jQuery("#to_postcode").hide();
-		imageUrl = "<?php echo TD_SHIPPING_URL; ?>/ajax-loader-bg.gif";
+		imageUrl = "<?php echo TD_SHIPPING_URL; ?>/assets/images/ajax-loader-bg.gif";
 		jQuery('body').click(function() {
 			jQuery('#autocomplete-div').hide('');
 			jQuery('#dynamic_content').hide('');

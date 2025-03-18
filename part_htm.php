@@ -198,7 +198,7 @@
 	}
 
 	.loadinggif {
-		background:url('<?php echo TD_SHIPPING_URL; ?>/ajax-loader.gif') no-repeat right center;
+		background:url('<?php echo TD_SHIPPING_URL; ?>/assets/images/ajax-loader.gif') no-repeat right center;
 	}
 
 	.placeholder {
@@ -351,7 +351,7 @@
 				<table width="100%">
 					<td colspan="3" width="50%">
 						<div class="logoSection">
-							<img src="<?php echo TD_SHIPPING_URL; ?>//logo-transdirect.png" width="100%"/>
+							<img src="<?php echo TD_SHIPPING_URL; ?>/assets/images/logo-transdirect.png" width="100%"/>
 						</div>
 					</td>
 					<td width="25%">
