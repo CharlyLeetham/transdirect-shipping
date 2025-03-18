@@ -174,7 +174,6 @@ global $woocommerce, $wpdb;
 	    <div class="blockUI" style="display:none"></div>
 	    <div class="shipping_calculator td-trans-frm" id="trans_frm" style="<?= isset($showShippingCalc) ? '' : 'display:none' ?>">
 	        <h4><?php _e($trans_title, 'woocommerce'); ?></h4>
-	        <br/>
 	        <section class="td-shipping-calculator-form1">
 	            <p class="form-row">
 	                <input type="text" name="to_location" id="to_location" placeholder="Enter Postcode, Suburb" autocomplete="off" width="100%" />
