@@ -24,7 +24,7 @@ class Quotes {
         error_log ( '$_POST:' . print_r( $_POST, true ) );
         // Get default settings
         $getTitle = td_getApiDetails();
-        error_log ( "GetTitle: " . $getTitle );
+        error_log ( "GetTitle: " . print_r( $getTitle, true) );
         if(strpos($_POST['to_location'], ',')){
             $explode_to     = explode(',', $_POST['to_location']);
             error_log ( 'Location : ' . $explode_to );
